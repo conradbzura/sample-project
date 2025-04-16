@@ -5,9 +5,6 @@ inputs:
   version:
     required: true
     type: string
-  target-branch:
-    required: true
-    type: string
 
 runs:
   using: composite
@@ -35,7 +32,6 @@ runs:
         fi
         gh release create ${{ inputs.version }} --verify-tag \
           --repo ${{ github.repository }} \
-          --target ${{ inputs.target-branch }} \
           --generate-notes \
           $prerelease_flag
  

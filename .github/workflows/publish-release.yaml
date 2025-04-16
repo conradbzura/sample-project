@@ -85,7 +85,6 @@ jobs:
       - uses: ./.github/actions/publish-github-release
         with:
           version: ${{ needs.tag-version.outputs.version }}
-          target-branch: ${{ github.base_ref }}
 
   publish-pypi-release:
     name: Publish release to PyPI
