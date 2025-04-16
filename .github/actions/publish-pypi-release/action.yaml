@@ -15,10 +15,11 @@ runs:
     - name: Download distribution artifacts
       uses: actions/download-artifact@v4
       with:
-        name: dist
+        name: dist-${{ inputs.version }}
         path: dist-${{ inputs.version }}/
 
     - name: Upload distribution to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         password: ${{ inputs.pypi-token }}
+        packages_dir: dist-${{ inputs.version }}
