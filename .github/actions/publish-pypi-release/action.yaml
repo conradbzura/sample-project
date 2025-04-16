@@ -22,4 +22,4 @@ runs:
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         password: ${{ inputs.pypi-token }}
-        packages_dir: dist-${{ inputs.version }}
+        packages-dir: dist-${{ inputs.version }}
