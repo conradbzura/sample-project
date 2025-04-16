@@ -1,0 +1,26 @@
+name: Validate repository
+description: Cut a release branch and publish a release-candidate.
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  validate:
+    name: Validate repository secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Secret "MY_TOKEN"
+        env:
+          MY_TOKEN: ${{ secrets.MY_TOKEN }}
+        if: ${{ env.MY_TOKEN == '' }}
+        run: |
+          echo 'The secret "MY_TOKEN" has not been defined'
+          echo 'Go to "settings \> secrets \> actions" to define it'
+
+      - name: Secret "PYPI_TOKEN"
+        env:
+          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        if: ${{ env.PYPI_TOKEN == '' }}
+        run: |
+          echo 'The secret "PYPI_TOKEN" has not been defined'
+          echo 'Go to "settings \> secrets \> actions" to define it'

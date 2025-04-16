@@ -1,0 +1,25 @@
+name: Validate pull request
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - src/**
+      - pyproject.toml
+    
+jobs:
+  merge-forbidden:
+    name: Merge forbidden
+    runs-on: ubuntu-latest
+    if: github.head_ref != 'release'
+    
+    steps:
+      - run: |
+          echo "ERROR: Merging code changes directly into master forbidden."
+          exit 1
