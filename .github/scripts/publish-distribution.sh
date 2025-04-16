@@ -7,7 +7,7 @@ case $# in
     0)
         # Attempt to retrieve token from default keychain
         if command -v ks &> /dev/null; then
-            if ks -k dev ls | grep -q "pypi-token"; then
+            if ks -k $KEYCHAIN ls | grep -q "\bpypi-token\b"; then
                 KEYCHAIN="dev"
                 SECRET="pypi-token"
                 TOKEN=$(ks -k $KEYCHAIN show $SECRET)
