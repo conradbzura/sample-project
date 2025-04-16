@@ -15,7 +15,7 @@ runs:
     - name: Download distribution artifacts
       uses: actions/download-artifact@v4
       with:
-        name: dist-${{ inputs.version }}
+        name: dist
         path: dist-${{ inputs.version }}/
 
     - name: Upload distribution to PyPI
