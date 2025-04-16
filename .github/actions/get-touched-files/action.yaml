@@ -16,7 +16,7 @@ runs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        fetch-depth: 2
+        fetch-depth: 0
         persist-credentials: false
 
     - name: Get touched files
@@ -25,7 +25,7 @@ runs:
       run: |
         eval "pathspec=('${{ inputs.pathspec }}')"
         echo "pathspec: '${pathspec[@]}'"
-        touched=$(git diff --name-only HEAD HEAD^ -- ${pathspec[@]})
+        touched=$(git diff --name-only HEAD origin/master -- ${pathspec[@]})
         touched=$(echo "$touched" | tr '\n' ' ' | xargs)
         echo "touched: '$touched'"
         echo "touched=$touched" >> $GITHUB_OUTPUT
