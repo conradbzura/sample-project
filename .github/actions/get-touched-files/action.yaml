@@ -25,7 +25,7 @@ runs:
       run: |
         eval "pathspec=('${{ inputs.pathspec }}')"
         echo "pathspec: '${pathspec[@]}'"
-        touched=$(git diff --name-only HEAD HEAD^ -- ${pathspec[@]})
+        touched=$(git diff --name-only HEAD master -- ${pathspec[@]})
         touched=$(echo "$touched" | tr '\n' ' ' | xargs)
         echo "touched: '$touched'"
         echo "touched=$touched" >> $GITHUB_OUTPUT
