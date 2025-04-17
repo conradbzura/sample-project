@@ -15,12 +15,16 @@ runs:
     - name: Download distribution artifacts
       uses: actions/download-artifact@v4
       with:
-        name: dist
+        name: dist-${{ inputs.version }}
         path: dist-${{ inputs.version }}/
 
     - name: Install uv
       uses: astral-sh/setup-uv@v5
 
     - name: Upload distribution to PyPI
+      shell: bash
       run: |
+        ls -lrta
+        ls -lrta dist-${{ inputs.version }}
+        pwd
         .github/scripts/publish-distribution.sh --source dist-${{ inputs.version }} ${{ inputs.pypi-token }}
