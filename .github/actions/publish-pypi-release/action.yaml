@@ -22,5 +22,6 @@ runs:
       uses: astral-sh/setup-uv@v5
 
     - name: Upload distribution to PyPI
+      shell: bash
       run: |
         .github/scripts/publish-distribution.sh --source dist-${{ inputs.version }} ${{ inputs.pypi-token }}
