@@ -24,4 +24,6 @@ runs:
     - name: Upload distribution to PyPI
       shell: bash
       run: |
+        ls -lrta
+        pwd
         .github/scripts/publish-distribution.sh --source dist-${{ inputs.version }} ${{ inputs.pypi-token }}
