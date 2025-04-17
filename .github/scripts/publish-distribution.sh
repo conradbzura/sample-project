@@ -66,7 +66,7 @@ esac
 
 # Publish the package
 if [ -n "$TOKEN" ]; then
-    uv publish --username "__token__" --password "$TOKEN" "$SOURCE"
+    uv publish --username "__token__" --password "$TOKEN" "$SOURCE"/*
 else
-    uv publish "$SOURCE"
+    uv publish "$SOURCE/*"
 fi
