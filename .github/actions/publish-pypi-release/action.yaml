@@ -18,7 +18,9 @@ runs:
         name: dist
         path: dist-${{ inputs.version }}/
 
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+
     - name: Upload distribution to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        password: ${{ inputs.pypi-token }}
+      run: |
+        .github/scripts/publish-distribution.sh --source dist-${{ inputs.version }} ${{ inputs.pypi-token }}
