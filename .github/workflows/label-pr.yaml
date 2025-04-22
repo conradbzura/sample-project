@@ -25,6 +25,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Add label
+        env:
+          GH_TOKEN: ${{ secrets.MY_TOKEN }}
         uses: ./.github/actions/add-label
         with:
           label: code-change
@@ -40,6 +42,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Add label
+        env:
+          GH_TOKEN: ${{ secrets.MY_TOKEN }}
         uses: ./.github/actions/add-label
         with:
           label: release
