@@ -18,7 +18,5 @@ runs:
 
     - name: Add label
       shell: bash
-      env:
-        GH_TOKEN: ${{ secrets.MY_TOKEN }}
       run: |
         gh pr edit "${{ github.event.number }}" --add-label "${{ inputs.label }}"
