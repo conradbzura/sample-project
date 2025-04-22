@@ -1,4 +1,4 @@
-name: Validate pull request
+name: Label pull request
 
 on:
   pull_request:
@@ -39,8 +39,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.MY_TOKEN }}
       - name: Add label
         uses: ./.github/actions/add-label
         with:
