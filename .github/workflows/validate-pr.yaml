@@ -16,38 +16,6 @@ on:
       - pyproject.toml
     
 jobs:
-  add-code-change-label:
-    name: Add code-change label
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-    if: ${{ github.head_ref != 'release' }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Add label
-        uses: ./.github/actions/add-label
-        with:
-          label: code-change
-
-  add-release-label:
-    name: Add release label
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-    if: ${{ github.base_ref == 'master' && github.head_ref == 'release' }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.MY_TOKEN }}
-      - name: Add label
-        uses: ./.github/actions/add-label
-        with:
-          label: release
-
   merge-forbidden:
     name: Merge forbidden
     runs-on: ubuntu-latest
