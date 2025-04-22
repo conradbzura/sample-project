@@ -24,7 +24,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Add label
-        uses: ./.github/actions/publish-pypi-release
+        uses: ./.github/actions/add-label
         with:
           label: code-change
 
@@ -38,7 +38,7 @@ jobs:
         with:
           token: ${{ secrets.MY_TOKEN }}
       - name: Add label
-        uses: ./.github/actions/publish-pypi-release
+        uses: ./.github/actions/add-label
         with:
           label: release
 
