@@ -19,6 +19,9 @@ jobs:
   add-code-change-label:
     name: Add code-change label
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     if: ${{ github.head_ref != 'release' }}
     steps:
       - name: Checkout code
@@ -31,6 +34,9 @@ jobs:
   add-release-label:
     name: Add release label
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     if: ${{ github.base_ref == 'master' && github.head_ref == 'release' }}
     steps:
       - name: Checkout code
