@@ -11,6 +11,7 @@ runs:
   steps:
     - name: Verify event
       if: ${{ github.event_name != 'pull_request' }}
+      shell: bash
       run: |
         echo "Error: This action can only be used on pull request events."
         exit 1
