@@ -23,14 +23,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.MY_TOKEN }}
       - name: Add label
-        uses: actions-ecosystem/action-add-labels@v1
+        uses: ./.github/actions/publish-pypi-release
         with:
-          labels: code-change
-        env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+          label: code-change
 
   add-release-label:
     name: Add release label
@@ -42,11 +38,9 @@ jobs:
         with:
           token: ${{ secrets.MY_TOKEN }}
       - name: Add label
-        uses: actions-ecosystem/action-add-labels@v1
+        uses: ./.github/actions/publish-pypi-release
         with:
-          labels: release
-        env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+          label: release
 
   merge-forbidden:
     name: Merge forbidden

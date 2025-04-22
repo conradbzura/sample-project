@@ -20,13 +20,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-
       - name: Get touched files
         id: get-touched-files
         uses: ./.github/actions/get-touched-files
         with:
           pathspec: 'src/ pyproject.toml'
-
       - name: Fail if code hasn't changed
         if: ${{ ! steps.get-touched-files.outputs.touched }}
         run: |
@@ -40,7 +38,6 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-
     outputs:
       version: ${{ steps.cut-release-branch.outputs.version }}
 
@@ -50,7 +47,6 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.MY_TOKEN }}
-
       - name: Verify main is up to date
         run: |
           git fetch origin main
@@ -59,25 +55,21 @@ jobs:
             echo "Error: main is not up to date with master" >&2
             exit 1
           fi
-
       - name: Create release branch
         id: cut-release-branch
         run: |
           version=$(.github/scripts/cut-release.sh ${{ github.event.inputs.release-type }} release)
           echo "Release candidate: $version"
           echo "version=$version" >> $GITHUB_OUTPUT
-        
       - name: Checkout release
         uses: actions/checkout@v4
         with:
           ref: release
           token: ${{ secrets.MY_TOKEN }}
-
       - name: Tag version
         run: |
           git tag ${{ steps.cut-release-branch.outputs.version }}
           git push origin ${{ steps.cut-release-branch.outputs.version }}
-
       - name: Create pull request
         env:
           GH_TOKEN: ${{ secrets.MY_TOKEN }}

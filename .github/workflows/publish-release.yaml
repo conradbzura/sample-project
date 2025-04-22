@@ -26,7 +26,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.MY_TOKEN }}
-
       - name: Determine version segment to bump
         id: determine-version-segment
         run: |
@@ -49,7 +48,6 @@ jobs:
               exit 1
               ;;
           esac
-
       - name: Create tag
         id: create-tag
         run: |
