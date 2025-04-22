@@ -21,4 +21,4 @@ runs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        gh pr edit "$GITHUB_REF_NAME" --add-label "${{ inputs.label }}"
+        gh pr edit "${{ github.event.number }}" --add-label "${{ inputs.label }}"
